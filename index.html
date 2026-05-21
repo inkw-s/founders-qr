@@ -6,13 +6,12 @@
   <title>UNSW Founders – Feedback QR</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=DM+Mono&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono&display=swap');
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       background: #f9f7f4;
       min-height: 100vh;
       display: flex;
@@ -34,12 +33,22 @@
     }
 
     .logo {
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #aaa;
+      display: inline-flex;
+      align-items: center;
       margin-bottom: 1.5rem;
+      font-size: 26px;
+      font-weight: 700;
+    }
+
+    .logo .unsw {
+      background: #ffe600;
+      padding: 4px 8px;
+      color: #111;
+    }
+
+    .logo .founders {
+      padding: 4px 2px 4px 8px;
+      color: #111;
     }
 
     #qrcode {
@@ -53,8 +62,8 @@
     }
 
     .caption {
-      font-size: 1.1rem;
-      font-weight: 600;
+      font-size: 1rem;
+      font-weight: 700;
       color: #111;
       line-height: 1.4;
       margin-bottom: 0.4rem;
@@ -83,9 +92,9 @@
       flex: 1;
       padding: 0.65rem 1rem;
       border-radius: 12px;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-size: 0.85rem;
-      font-weight: 500;
+      font-weight: 600;
       cursor: pointer;
       border: none;
       transition: opacity 0.15s;
@@ -108,7 +117,9 @@
 </head>
 <body>
   <div class="card" id="card">
-    <div class="logo">UNSW Founders</div>
+    <div class="logo">
+      <span class="unsw">UNSW</span><span class="founders">FOUNDERS</span>
+    </div>
     <div id="qrcode"></div>
     <div class="caption" id="caption"></div>
     <div class="sub" id="sub">Scan to leave feedback</div>
@@ -150,10 +161,10 @@
     function downloadQR() {
       const canvas = document.querySelector('#qrcode canvas');
       if (!canvas) return;
-      const link = document.createElement('a');
-      link.download = getFilename('_qr');
-      link.href = canvas.toDataURL('image/png');
-      link.click();
+      const a = document.createElement('a');
+      a.download = getFilename('_qr');
+      a.href = canvas.toDataURL('image/png');
+      a.click();
     }
 
     function downloadCard() {
@@ -162,10 +173,10 @@
         backgroundColor: '#ffffff',
         useCORS: true
       }).then(canvas => {
-        const link = document.createElement('a');
-        link.download = getFilename('_card');
-        link.href = canvas.toDataURL('image/png');
-        link.click();
+        const a = document.createElement('a');
+        a.download = getFilename('_card');
+        a.href = canvas.toDataURL('image/png');
+        a.click();
       });
     }
   </script>
